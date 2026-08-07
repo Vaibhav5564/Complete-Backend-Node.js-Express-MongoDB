@@ -1,25 +1,9 @@
-const express = require('express');
+// Start a server
 
-const app = express(); // Created Server But Not Start
+const app = require("./src/app");
 
-//Created Routes to respond when user request for '/', '/about' etc
+// app.listen takes two parameters one is port no. and other is callback means when server started then that callback runs automatically
 
-//request Data Supply (frontend to backend)
-//respond Data Supply (backend to frontend)  
-
-app.get("/", (req, res) => {
-    res.send("Hello World");
+app.listen(3000, ()=>{
+    console.log("Server is Running on port 3000");
 });
-
-app.get("/about", (req, res) => {
-    res.send("About Page");
-});
-
-app.listen(3000); // Server Start
-
-// API - Application Programming Interface
-// A set of rules or protocols that allows different software programs to communicate and exchange data and functionality with each other. 
-// In simple words commmunicate two different programs
-
-
-// Types of APIs by Architectural- REST, SOAP, RPC, GraphQL, webSocket 
