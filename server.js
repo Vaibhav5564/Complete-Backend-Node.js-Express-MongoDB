@@ -1,9 +1,8 @@
-// Start a server
+const app = require("./src/app")
+const connectDB = require("./src/db/db");
 
-const app = require("./src/app");
-
-// app.listen takes two parameters one is port no. and other is callback means when server started then that callback runs automatically
+connectDB()
 
 app.listen(3000, ()=>{
-    console.log("Server is Running on port 3000");
-});
+    console.log("Server is running on port 3000");
+})

@@ -1,65 +1,63 @@
-// In production level we create a server in src folder and creates a server.js file in root folder and start server in server.js by exporting app from app.js
-
-// Create a server
 const express = require("express")
-
+const nodeModel = require("./models/note.model");
+const noteModel = require("./models/note.model");
 const app = express();
+app.use(express.json()) // Middleware
 
-app.use(express.json())  //middleware
 
-const notes = []
+/*
+POST /notes => Creae a note
+GET /notes => Get all note
+Delete /notes/:id => Delete a note
+PATCH /notes/:id => Update a note
 
-// titlw, description
-// Post /notes
-app.post("/notes", (req, res) => {
-    notes.push(req.body);
+*/
 
-    res.status(201).json({
-        message: "Note Created Successfully"
-    });
-});
-
-app.get('/notes', (req, res) => {
-    res.status(200).json({
-        message: "Note fetched successfully",
-        notes: notes
+app.post('/notes', async (req, res)=>{
+    const data = req.body // {title, discription}
+    await noteModel.create({
+        title: data.title,
+        description: data.description
+    })
+    res.status(202).json({
+        message: "Note Created Succefully"
     })
 })
 
-// Delete notes/:index
-// Before colon static part and after colon part is dynamic
-app.delete('/notes/:index', (req, res) => {
-    const index = req.params.index; // Used to get index at which note is deleted
-    delete notes[ index ]
+app.get('/notes', async(req, res)=>{
+    // const notes = await noteModel.find() // find() returns array of all obects prsent in database
+    const notes = await noteModel.findOne({  // It returns object having title: title-1
+        title: "test-1"
+    })
+    res.status(200).json({
+        message: "Notes fetched successfully",
+        notes: notes
+    })
+});
+
+app.delete("/notes/:id", async(req, res)=>{
+    const id = req.params.id
+
+    await noteModel.findOneAndDelete({
+        _id: id
+    })
     res.status(200).json({
         message: "Note Deleted Successfully"
     })
 })
 
-app.patch('/notes/:index', (req, res) =>{
-   
-    const index = req.params.index
+app.patch('/notes/:id', async(req, res)=>{
+    const id = req.params.id
     const description = req.body.description
 
-    notes[index].description = description
+    await noteModel.findOneAndUpdate({_id: id}, { description: description})
 
     res.status(200).json({
         message: "Note updated successfully"
     })
 })
 
-// If we want to use patch methpd then everytime make visibility public and also posted data on server is cleared so first post data on server then use patch, delete and get
-// because the variables are stored in ram when we stop server memory gets cleared thats why we posted data also cleared 
-// RAM Stand for Random Access Memory
-// To overcome this need to use Database to store data permanantly
+// Possible outcomes of find => [{},{}....] or [] returns array
+// Possible outcomes of findOnde => {} or null // If their are multiple matches then it returns first matched result
 
-module.exports = app;
-
-
-// Types of Servers - Web Server, Mail Server, File Server, Databse Server, Application Server and Proxy Server
-
-// Database
-
-// Operations on Database CRUD- Create, Read, Update, Delete
-
-// hriZWAiKCBuGLXuK
+module.exports = app
