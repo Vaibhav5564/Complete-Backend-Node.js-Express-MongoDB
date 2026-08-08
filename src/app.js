@@ -54,3 +54,12 @@ app.patch('/notes/:index', (req, res) =>{
 // To overcome this need to use Database to store data permanantly
 
 module.exports = app;
+
+
+// Types of Servers - Web Server, Mail Server, File Server, Databse Server, Application Server and Proxy Server
+
+// Database
+
+// Operations on Database CRUD- Create, Read, Update, Delete
+
+// hriZWAiKCBuGLXuK

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Vaibhav5564/Complete-Backend-Node.js-Express-MongoDB#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.9.1"
   }
 }
