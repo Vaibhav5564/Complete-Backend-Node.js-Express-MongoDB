@@ -4,9 +4,10 @@ const multer = require("multer");
 // Our first middleware is used for reading json data
 const uploadFile = require("./services/storage.service");
 const postModel = require("./models/post.model")
+const cors = require("cors");
 
-
-app = express();
+const app = express();
+app.use(cors()); //middleware
 app.use(express.json()); //middleware
 
 
