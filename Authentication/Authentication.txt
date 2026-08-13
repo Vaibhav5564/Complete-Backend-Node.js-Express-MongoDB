@@ -1,0 +1,53 @@
+Authentication Flow 
+
+Validation => Verification => Authentication => Authorization
+
+Validation - 
+    eg.
+    Email - 1234567890 (Wrong Input Field) 
+    password => Test@123 
+    Validation means to check data is appropriate for input field.
+
+Verification -
+    eg.
+    Email - abc@xyz.com
+    password - ******
+
+    Checking user's entered information is actually exist or not
+
+Authentication - 
+    To find user request to server.
+    eg. We have mutiple active users then process of finding which user is interact with perticular request.
+    
+
+Authorization -
+    Process of allowing permission to users according to their roles.
+
+                         |-> Session based Authentication
+Types of Authentication  |
+                         |-> Token based Authentication
+
+
+
+Token based authentication
+
+    When user register their account then it shares info like email, password etc.
+    Then server creates a token and retruns to user and that token in unique for every user.
+
+    User ------register------> Server
+    ^                            |
+    |                            V
+    -------------Token-----------|
+
+
+    eg -
+        Student take admsission in college
+        It submits all required documents to college
+        Then College give them an ID card
+
+    It seems like student register in college and college give them token like ID card.
+    Now we can recognize that student by their ID card (Token)
+
+
+
+
