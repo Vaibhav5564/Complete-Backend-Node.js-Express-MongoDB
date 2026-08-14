@@ -51,3 +51,13 @@ Token based authentication
 
 
 
+cookies -
+    cookies is web storage where that data can easily read by server.
+    and also server can modify that data.
+    Server having admin access of our cookies storage
+
+    Data stored in cookies it goes to server on every request
+    
+
+
+
